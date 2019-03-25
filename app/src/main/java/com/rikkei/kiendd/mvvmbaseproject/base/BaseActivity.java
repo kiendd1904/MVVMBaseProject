@@ -1,6 +1,43 @@
 package com.rikkei.kiendd.mvvmbaseproject.base;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
 
-public class BaseActivity extends AppCompatActivity {
+import com.rikkei.kiendd.mvvmbaseproject.view.ViewController;
+
+import javax.inject.Inject;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.Fragment;
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
+
+public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatActivity implements HasSupportFragmentInjector {
+
+    protected T binding;
+
+    protected ViewController mViewController;
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return fragmentDispatchingAndroidInjector;
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
+        super.onCreate(savedInstanceState);
+
+        binding = DataBindingUtil.setContentView(this, getLayoutId());
+        mViewController = new ViewController(getSupportFragmentManager(), getLayoutId());
+    }
+
+    public abstract int getLayoutId();
 }

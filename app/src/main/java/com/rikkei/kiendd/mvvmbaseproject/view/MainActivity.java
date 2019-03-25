@@ -1,32 +1,31 @@
 package com.rikkei.kiendd.mvvmbaseproject.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
-
-import android.os.Bundle;
-
 import com.rikkei.kiendd.mvvmbaseproject.R;
+import com.rikkei.kiendd.mvvmbaseproject.base.BaseActivity;
+import com.rikkei.kiendd.mvvmbaseproject.databinding.ActivityMainBinding;
+import com.rikkei.kiendd.mvvmbaseproject.view.home.HomeFragment;
 
-import javax.inject.Inject;
-
-public class MainActivity extends AppCompatActivity implements HasSupportFragmentInjector {
-
-    @Inject
-    DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
+public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return fragmentDispatchingAndroidInjector;
+    public int getLayoutId() {
+        return R.layout.activity_main;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void onStart() {
+        super.onStart();
+
+        initView();
+        initData();
+    }
+
+    private void initView() {
+        if (mViewController != null) {
+            mViewController.addFragment(HomeFragment.class, null);
+        }
+    }
+
+    private void initData() {
     }
 }

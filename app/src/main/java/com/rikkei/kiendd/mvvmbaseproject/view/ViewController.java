@@ -95,15 +95,19 @@ public class ViewController<T extends BaseFragment> {
         if (currentFragment != null && currentFragment.getClass().getName().equalsIgnoreCase(type.getName())) {
             return;
         }
+
         fragmentManager.beginTransaction().hide(currentFragment).commit();
+
         try {
             currentFragment = type.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
+
         if (data != null) {
             currentFragment.setData(data);
         }
+
         currentFragment.setViewController(this);
 
         // if redirect to Home, remove all previous fragment
@@ -128,9 +132,11 @@ public class ViewController<T extends BaseFragment> {
             classList.remove(classList.size() - 1);
             fragmentManager.beginTransaction().remove(currentFragment).commit();
             currentFragment = fragmentList.get(fragmentList.size() - 1);
+
             if (data != null) {
                 currentFragment.setData(data);
             }
+
             currentFragment.setViewController(this);
             currentFragment.setUserVisibleHint(true);
             fragmentManager.beginTransaction().show(currentFragment).commit();
@@ -149,9 +155,11 @@ public class ViewController<T extends BaseFragment> {
             classList.remove(classList.size() - 1);
             fragmentManager.beginTransaction().remove(currentFragment).commit();
             currentFragment = fragmentList.get(fragmentList.size() - 1);
+
             if (data != null) {
                 currentFragment.setData(data);
             }
+
             currentFragment.setViewController(this);
             currentFragment.setUserVisibleHint(true);
             fragmentManager.beginTransaction().show(currentFragment).commit();
@@ -165,15 +173,18 @@ public class ViewController<T extends BaseFragment> {
     public boolean backFromReplaceFragment(HashMap<String, Object> data) {
         if (classList.size() >= 2) {
             classList.remove(classList.size() - 1);
+
             try {
                 currentFragment = classList.get(classList.size() - 1).newInstance();
 
             } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
+
             if (data != null) {
                 currentFragment.setData(data);
             }
+
             currentFragment.setViewController(this);
             fragmentList.clear();
             fragmentList.add(currentFragment);
