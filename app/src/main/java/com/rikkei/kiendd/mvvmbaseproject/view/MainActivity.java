@@ -1,16 +1,36 @@
 package com.rikkei.kiendd.mvvmbaseproject.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
 import com.rikkei.kiendd.mvvmbaseproject.R;
+import com.rikkei.kiendd.mvvmbaseproject.base.BaseActivity;
+import com.rikkei.kiendd.mvvmbaseproject.databinding.ActivityMainBinding;
+import com.rikkei.kiendd.mvvmbaseproject.view.home.HomeFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public int getFragmentContainerId() {
+        return R.id.flMainContainer;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        initView();
+        initData();
+    }
+
+    private void initView() {
+        if (mViewController != null) {
+            mViewController.addFragment(HomeFragment.class, null);
+        }
+    }
+
+    private void initData() {
     }
 }
