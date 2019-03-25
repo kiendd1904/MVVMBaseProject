@@ -96,7 +96,9 @@ public class ViewController<T extends BaseFragment> {
             return;
         }
 
-        fragmentManager.beginTransaction().hide(currentFragment).commit();
+        if (currentFragment != null) {
+            fragmentManager.beginTransaction().hide(currentFragment).commit();
+        }
 
         try {
             currentFragment = type.newInstance();

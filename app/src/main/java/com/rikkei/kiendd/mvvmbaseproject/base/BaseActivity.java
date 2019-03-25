@@ -36,8 +36,10 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatA
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, getLayoutId());
-        mViewController = new ViewController(getSupportFragmentManager(), getLayoutId());
+        mViewController = new ViewController(getSupportFragmentManager(), getFragmentContainerId());
     }
 
     public abstract int getLayoutId();
+
+    public abstract int getFragmentContainerId();
 }

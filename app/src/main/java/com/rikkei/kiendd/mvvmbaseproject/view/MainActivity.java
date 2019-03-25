@@ -13,6 +13,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     }
 
     @Override
+    public int getFragmentContainerId() {
+        return R.id.flMainContainer;
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
 
