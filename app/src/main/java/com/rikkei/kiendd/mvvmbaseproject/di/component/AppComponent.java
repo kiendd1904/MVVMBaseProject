@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.rikkei.kiendd.mvvmbaseproject.BaseApplication;
 import com.rikkei.kiendd.mvvmbaseproject.di.module.ActivityBindingModule;
+import com.rikkei.kiendd.mvvmbaseproject.di.module.AppDatabaseModule;
 import com.rikkei.kiendd.mvvmbaseproject.di.module.AppModule;
 
 import javax.inject.Singleton;
@@ -16,6 +17,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         AndroidSupportInjectionModule.class,
         AppModule.class,
+        AppDatabaseModule.class,
         ActivityBindingModule.class
 })
 public interface AppComponent {
