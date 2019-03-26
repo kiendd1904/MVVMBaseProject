@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.rikkei.kiendd.mvvmbaseproject"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -11,23 +10,45 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        debug {
+            storeFile file("../keystore/debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        release {
+            storeFile file("../keystore/aic_keystore")
+            storePassword "your_password"
+            keyAlias "your_alias"
+            keyPassword "your_password"
+        }
+    }
+
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
-            //buildConfigField("String", "BASE_URL", "\"http://172.16.18.91/oab/\"")
-            buildConfigField("String", "BASE_URL", "\"http://172.16.14.61/oab/\"")
-            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
-        }
-        stage {
-            signingConfig signingConfigs.debug
-            buildConfigField("String", "BASE_URL", "\"https://astellas-oab-stage.welby.jp/\"")
-            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"https://welby.jp\"")
-            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        rikkei {
+            dimension "version"
+            applicationId "com.rikkei.kiendd.mvvmbaseproject"
+            resValue "string", "app_name", "MVVMBaseProject"
+        }
+        client {
+            dimension "version"
+            applicationId "client.appid.here"
+            resValue "string", "app_name", "MVVMBaseProject release"
         }
     }
 
