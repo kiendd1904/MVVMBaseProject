@@ -16,4 +16,10 @@ public class Define {
     public static class Bus {
         public static final String ACCESS_TOKEN_EXPIRED = "ACCESS_TOKEN_EXPIRED";
     }
+
+    public class ResponseStatus {
+        public static final int LOADING = 1;
+        public static final int SUCCESS = 2;
+        public static final int ERROR = 0;
+    }
 }

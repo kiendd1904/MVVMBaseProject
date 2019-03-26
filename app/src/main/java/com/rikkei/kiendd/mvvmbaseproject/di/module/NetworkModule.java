@@ -25,8 +25,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
-    @Singleton
     @Provides
+    @Singleton
     ApiInterface provideApiInterface(OkHttpClient client) {
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -42,8 +42,8 @@ public class NetworkModule {
         return retrofit.create(ApiInterface.class);
     }
 
-    @Singleton
     @Provides
+    @Singleton
     OkHttpClient provideHttpClient(Context context) {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
