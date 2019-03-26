@@ -25,7 +25,8 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     protected T binding;
 
 
-    /**The ViewController for control fragments in an activity
+    /**
+     * The ViewController for control fragments in an activity
      */
     @Nullable
     private ViewController mViewController;
