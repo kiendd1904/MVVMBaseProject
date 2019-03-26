@@ -5,11 +5,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class BaseAdapter<T extends BaseViewHolder> extends RecyclerView.Adapter<T> {
+public abstract class BaseAdapter<T extends BaseViewHolder> extends RecyclerView.Adapter<T> {
 
     @NonNull
     @Override
     public T onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         return null;
     }
 
@@ -22,4 +23,6 @@ public class BaseAdapter<T extends BaseViewHolder> extends RecyclerView.Adapter<
     public int getItemCount() {
         return 0;
     }
+
+    public abstract int getLayoutId();
 }
