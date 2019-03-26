@@ -5,6 +5,8 @@ import android.app.Application;
 import com.rikkei.kiendd.mvvmbaseproject.BaseApplication;
 import com.rikkei.kiendd.mvvmbaseproject.di.module.ActivityBindingModule;
 import com.rikkei.kiendd.mvvmbaseproject.di.module.AppModule;
+import com.rikkei.kiendd.mvvmbaseproject.di.module.FragmentBindingModule;
+import com.rikkei.kiendd.mvvmbaseproject.di.module.NetworkModule;
 
 import javax.inject.Singleton;
 
@@ -16,7 +18,9 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         AndroidSupportInjectionModule.class,
         AppModule.class,
-        ActivityBindingModule.class
+        ActivityBindingModule.class,
+        FragmentBindingModule.class,
+        NetworkModule.class
 })
 public interface AppComponent {
 
