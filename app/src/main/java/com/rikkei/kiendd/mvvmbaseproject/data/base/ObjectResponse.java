@@ -5,7 +5,7 @@ import com.rikkei.kiendd.mvvmbaseproject.utils.Define;
 import androidx.annotation.NonNull;
 import io.reactivex.annotations.Nullable;
 
-public class ResponseObject<T> {
+public class ObjectResponse<T> {
     private int status;
 
     @Nullable
@@ -14,7 +14,7 @@ public class ResponseObject<T> {
     @Nullable
     private Throwable error;
 
-    public ResponseObject() {
+    public ObjectResponse() {
     }
 
     public int getStatus() {
@@ -29,21 +29,21 @@ public class ResponseObject<T> {
         return error;
     }
 
-    private ResponseObject(int status, T data, Throwable error) {
+    private ObjectResponse(int status, T data, Throwable error) {
         this.status = status;
         this.data = data;
         this.error = error;
     }
 
-    public ResponseObject<T> loading() {
-        return new ResponseObject<>(Define.ResponseStatus.LOADING, null, null);
+    public ObjectResponse<T> loading() {
+        return new ObjectResponse<>(Define.ResponseStatus.LOADING, null, null);
     }
 
-    public ResponseObject<T> success(@NonNull T data) {
-        return new ResponseObject<>(Define.ResponseStatus.SUCCESS, data, null);
+    public ObjectResponse<T> success(@NonNull T data) {
+        return new ObjectResponse<>(Define.ResponseStatus.SUCCESS, data, null);
     }
 
-    public ResponseObject<T> error(@NonNull Throwable throwable) {
-        return new ResponseObject<>(Define.ResponseStatus.ERROR, null, throwable);
+    public ObjectResponse<T> error(@NonNull Throwable throwable) {
+        return new ObjectResponse<>(Define.ResponseStatus.ERROR, null, throwable);
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import io.reactivex.annotations.Nullable;
 
-public class ResponseList<T> {
+public class ListResponse<T> {
     private int status;
 
     @Nullable
@@ -16,10 +16,10 @@ public class ResponseList<T> {
     @Nullable
     private Throwable error;
 
-    public ResponseList() {
+    public ListResponse() {
     }
 
-    private ResponseList(int status, List<T> data, Throwable error) {
+    private ListResponse(int status, List<T> data, Throwable error) {
         this.status = status;
         this.data = data;
         this.error = error;
@@ -37,15 +37,15 @@ public class ResponseList<T> {
         return error;
     }
 
-    public ResponseList<T> loading() {
-        return new ResponseList<>(Define.ResponseStatus.LOADING, null, null);
+    public ListResponse<T> loading() {
+        return new ListResponse<>(Define.ResponseStatus.LOADING, null, null);
     }
 
-    public ResponseList<T> success(@NonNull List<T> data) {
-        return new ResponseList<>(Define.ResponseStatus.SUCCESS, data, null);
+    public ListResponse<T> success(@NonNull List<T> data) {
+        return new ListResponse<>(Define.ResponseStatus.SUCCESS, data, null);
     }
 
-    public ResponseList<T> error(@NonNull Throwable throwable) {
-        return new ResponseList<>(Define.ResponseStatus.ERROR, null, throwable);
+    public ListResponse<T> error(@NonNull Throwable throwable) {
+        return new ListResponse<>(Define.ResponseStatus.ERROR, null, throwable);
     }
 }
