@@ -14,8 +14,7 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
-            //buildConfigField("String", "BASE_URL", "\"http://172.16.18.91/oab/\"")
-            buildConfigField("String", "BASE_URL", "\"http://172.16.14.61/oab/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
         stage {
