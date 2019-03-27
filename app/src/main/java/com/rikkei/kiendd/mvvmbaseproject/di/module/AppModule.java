@@ -5,15 +5,13 @@ import android.content.Context;
 
 import javax.inject.Singleton;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 @Module
-public class AppModule {
+public abstract class AppModule {
 
-    @Provides
+    @Binds
     @Singleton
-    Context provideContext(Application application) {
-        return application;
-    }
+    abstract Context provideContext(Application application);
 }

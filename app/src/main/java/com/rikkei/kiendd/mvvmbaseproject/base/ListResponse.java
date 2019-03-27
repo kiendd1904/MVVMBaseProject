@@ -1,4 +1,4 @@
-package com.rikkei.kiendd.mvvmbaseproject.data.base;
+package com.rikkei.kiendd.mvvmbaseproject.base;
 
 import com.rikkei.kiendd.mvvmbaseproject.utils.Define;
 

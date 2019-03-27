@@ -3,4 +3,5 @@
 
     <!-- HomeFragment -->
     <string name="txt_home">HomeFragment</string>
+    <string name="txt_repo_name">RepoName</string>
 </resources>
