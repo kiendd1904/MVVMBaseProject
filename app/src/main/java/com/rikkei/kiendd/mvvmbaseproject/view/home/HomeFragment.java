@@ -5,15 +5,14 @@ import android.os.Bundle;
 import com.rikkei.kiendd.mvvmbaseproject.R;
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseFragment;
 import com.rikkei.kiendd.mvvmbaseproject.databinding.FragmentHomeBinding;
-import com.rikkei.kiendd.mvvmbaseproject.view.detail.DetailFragment;
-import com.rikkei.kiendd.mvvmbaseproject.viewmodel.FragmentHomeViewModel;
+import com.rikkei.kiendd.mvvmbaseproject.viewmodel.HomeViewModel;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
 public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
 
-    private FragmentHomeViewModel homeViewModel;
+    private HomeViewModel homeViewModel;
 
     @Override
     protected int getLayoutId() {
@@ -24,7 +23,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        homeViewModel = ViewModelProviders.of(this, viewModelFactory).get(FragmentHomeViewModel.class);
+        homeViewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel.class);
     }
 
     @Override
@@ -32,16 +31,15 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
         super.onStart();
 
 
-
-        binding.btnNext.setOnClickListener(v -> {
-            if (mViewController != null) {
-                mViewController.addFragment(DetailFragment.class, null);
-            }
-        });
     }
 
     @Override
     public void backFromAddFragment() {
 
+    }
+
+    @Override
+    public boolean backPressed() {
+        return false;
     }
 }

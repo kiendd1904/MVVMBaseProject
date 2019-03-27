@@ -4,9 +4,9 @@ import javax.inject.Inject;
 
 import androidx.lifecycle.ViewModel;
 
-public class FragmentDetailViewModel extends ViewModel {
+public class HomeViewModel extends ViewModel {
 
     @Inject
-    public FragmentDetailViewModel() {
+    public HomeViewModel() {
     }
 }

@@ -25,7 +25,7 @@ public class ViewController<T extends BaseFragment> {
         classList = new ArrayList<>();
     }
 
-    private BaseFragment getCurrentFragment() {
+    public BaseFragment getCurrentFragment() {
         return currentFragment;
     }
 

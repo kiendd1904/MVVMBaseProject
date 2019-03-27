@@ -42,4 +42,15 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatA
     public abstract int getLayoutId();
 
     public abstract int getFragmentContainerId();
+
+    @Override
+    public void onBackPressed() {
+        if (mViewController != null && mViewController.getCurrentFragment() != null) {
+            if (mViewController.getCurrentFragment().backPressed()) {
+                super.onBackPressed();
+            }
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

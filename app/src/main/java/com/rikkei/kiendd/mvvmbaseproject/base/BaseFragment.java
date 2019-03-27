@@ -88,4 +88,6 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     }
 
     public abstract void backFromAddFragment();
+
+    public abstract boolean backPressed();
 }
