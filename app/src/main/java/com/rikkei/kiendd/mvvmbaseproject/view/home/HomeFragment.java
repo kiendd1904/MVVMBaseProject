@@ -1,7 +1,6 @@
 package com.rikkei.kiendd.mvvmbaseproject.view.home;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.rikkei.kiendd.mvvmbaseproject.R;
 import com.rikkei.kiendd.mvvmbaseproject.adapter.repolist.ListRepoAdapter;
@@ -14,7 +13,8 @@ import com.rikkei.kiendd.mvvmbaseproject.view.detail.DetailFragment;
 import com.rikkei.kiendd.mvvmbaseproject.viewmodel.HomeViewModel;
 import com.rikkei.kiendd.mvvmbaseproject.viewmodel.ListViewModel;
 
-import androidx.annotation.NonNull;
+import java.util.HashMap;
+
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -38,25 +38,28 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        initView();
-        initData();
+    public void onStart() {
+        super.onStart();
 
         fetchRepos();
     }
 
-    private void initData() {
-        adapter = new ListRepoAdapter(repo -> {
-            if (mViewController != null) {
-                mViewController.addFragment(DetailFragment.class, null);
-            }
-        });
+    @Override
+    public void initView() {
+
     }
 
-    private void initView() {
+    @Override
+    public void initData() {
+        adapter = new ListRepoAdapter(repo -> {
+            if (mViewController != null) {
+                HashMap<String, Object> data = new HashMap<>();
+                data.put(Define.Intent.REPO_OWNER, repo.getFullName());
+                data.put(Define.Intent.REPO_NAME, repo.getName());
 
+                mViewController.addFragment(DetailFragment.class, data);
+            }
+        });
     }
 
     private void fetchRepos() {
@@ -70,7 +73,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
                 //TODO: Show Loading
                 break;
             case Define.ResponseStatus.SUCCESS:
-                adapter.setRepoList(repoListResponse.getData());
+                adapter.setData(repoListResponse.getData());
                 binding.rvRepos.setAdapter(adapter);
                 break;
             case Define.ResponseStatus.ERROR:

@@ -47,4 +47,9 @@ public class Define {
             public static final String CONTRIBUTORS_URL = "contributors_url";
         }
     }
+
+    public static class Intent {
+        public static final String REPO_OWNER = "repo_owner";
+        public static final String REPO_NAME = "repo_name";
+    }
 }
