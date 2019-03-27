@@ -1,4 +1,4 @@
-package com.rikkei.kiendd.mvvmbaseproject.view;
+package com.rikkei.kiendd.mvvmbaseproject.view.main;
 
 import com.rikkei.kiendd.mvvmbaseproject.R;
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseActivity;
