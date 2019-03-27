@@ -1,5 +1,6 @@
 package com.rikkei.kiendd.mvvmbaseproject.di.module;
 
+import com.rikkei.kiendd.mvvmbaseproject.view.detail.DetailFragment;
 import com.rikkei.kiendd.mvvmbaseproject.view.home.HomeFragment;
 
 import dagger.Module;
@@ -10,4 +11,7 @@ public abstract class FragmentBindingModule {
 
     @ContributesAndroidInjector
     abstract HomeFragment bindHomeFragment();
+
+    @ContributesAndroidInjector
+    abstract DetailFragment bindDetailFragment();
 }
