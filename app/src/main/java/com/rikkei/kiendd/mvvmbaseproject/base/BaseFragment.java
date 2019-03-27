@@ -50,6 +50,13 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
         return binding.getRoot();
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView();
+        initData();
+    }
+
     protected abstract int getLayoutId();
 
     public void setViewController(ViewController viewController) {
@@ -91,4 +98,8 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     public abstract void backFromAddFragment();
 
     public abstract boolean backPressed();
+
+    public abstract void initView();
+
+    public abstract void initData();
 }

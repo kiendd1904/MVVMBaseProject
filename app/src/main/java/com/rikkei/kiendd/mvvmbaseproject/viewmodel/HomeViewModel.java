@@ -1,12 +1,16 @@
 package com.rikkei.kiendd.mvvmbaseproject.viewmodel;
 
+import com.rikkei.kiendd.mvvmbaseproject.base.BaseViewModel;
+import com.rikkei.kiendd.mvvmbaseproject.data.repository.RepoRepository;
+
 import javax.inject.Inject;
 
-import androidx.lifecycle.ViewModel;
+public class HomeViewModel extends BaseViewModel {
 
-public class HomeViewModel extends ViewModel {
+    private RepoRepository repoRepository;
 
     @Inject
-    public HomeViewModel() {
+    HomeViewModel(RepoRepository repoRepository) {
+        this.repoRepository = repoRepository;
     }
 }
