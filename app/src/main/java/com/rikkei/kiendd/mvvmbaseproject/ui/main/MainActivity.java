@@ -1,9 +1,9 @@
-package com.rikkei.kiendd.mvvmbaseproject.view;
+package com.rikkei.kiendd.mvvmbaseproject.ui.main;
 
 import com.rikkei.kiendd.mvvmbaseproject.R;
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseActivity;
 import com.rikkei.kiendd.mvvmbaseproject.databinding.ActivityMainBinding;
-import com.rikkei.kiendd.mvvmbaseproject.view.home.HomeFragment;
+import com.rikkei.kiendd.mvvmbaseproject.ui.home.HomeFragment;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 

@@ -1,7 +1,7 @@
-package com.rikkei.kiendd.mvvmbaseproject.view;
+package com.rikkei.kiendd.mvvmbaseproject.ui;
 
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseFragment;
-import com.rikkei.kiendd.mvvmbaseproject.view.home.HomeFragment;
+import com.rikkei.kiendd.mvvmbaseproject.ui.home.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +25,7 @@ public class ViewController<T extends BaseFragment> {
         classList = new ArrayList<>();
     }
 
-    private BaseFragment getCurrentFragment() {
+    public BaseFragment getCurrentFragment() {
         return currentFragment;
     }
 
