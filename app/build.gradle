@@ -12,10 +12,7 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("../keystore/debug.keystore")
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
+
         }
         release {
             storeFile file("../keystore/aic_keystore")
@@ -43,12 +40,10 @@ android {
         rikkei {
             dimension "version"
             applicationId "com.rikkei.kiendd.mvvmbaseproject"
-            resValue "string", "app_name", "MVVMBaseProject"
         }
         client {
             dimension "version"
             applicationId "client.appid.here"
-            resValue "string", "app_name", "MVVMBaseProject release"
         }
     }
 
