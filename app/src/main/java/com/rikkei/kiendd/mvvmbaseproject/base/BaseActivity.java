@@ -2,7 +2,7 @@ package com.rikkei.kiendd.mvvmbaseproject.base;
 
 import android.os.Bundle;
 
-import com.rikkei.kiendd.mvvmbaseproject.view.ViewController;
+import com.rikkei.kiendd.mvvmbaseproject.ui.ViewController;
 
 import javax.inject.Inject;
 

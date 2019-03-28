@@ -1,7 +1,7 @@
 package com.rikkei.kiendd.mvvmbaseproject.di.module;
 
-import com.rikkei.kiendd.mvvmbaseproject.view.detail.DetailFragment;
-import com.rikkei.kiendd.mvvmbaseproject.view.home.HomeFragment;
+import com.rikkei.kiendd.mvvmbaseproject.ui.detail.DetailFragment;
+import com.rikkei.kiendd.mvvmbaseproject.ui.home.HomeFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

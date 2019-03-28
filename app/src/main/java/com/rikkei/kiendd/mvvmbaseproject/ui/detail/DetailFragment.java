@@ -1,4 +1,4 @@
-package com.rikkei.kiendd.mvvmbaseproject.view.detail;
+package com.rikkei.kiendd.mvvmbaseproject.ui.detail;
 
 import android.os.Bundle;
 
@@ -6,7 +6,6 @@ import com.rikkei.kiendd.mvvmbaseproject.R;
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseFragment;
 import com.rikkei.kiendd.mvvmbaseproject.databinding.FragmentDetailBinding;
 import com.rikkei.kiendd.mvvmbaseproject.utils.Define;
-import com.rikkei.kiendd.mvvmbaseproject.viewmodel.DetailViewModel;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;

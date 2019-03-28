@@ -1,8 +1,9 @@
-package com.rikkei.kiendd.mvvmbaseproject.viewmodel;
+package com.rikkei.kiendd.mvvmbaseproject.ui.home;
 
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseViewModel;
 import com.rikkei.kiendd.mvvmbaseproject.base.ListResponse;
 import com.rikkei.kiendd.mvvmbaseproject.data.model.Repo;
+import com.rikkei.kiendd.mvvmbaseproject.data.pref.AppPreferences;
 import com.rikkei.kiendd.mvvmbaseproject.data.repository.RepoRepository;
 
 import javax.inject.Inject;
@@ -14,11 +15,14 @@ public class ListViewModel extends BaseViewModel {
 
     private final RepoRepository repoRepository;
 
+    private final AppPreferences preferences;
+
     private final MutableLiveData<ListResponse<Repo>> loadRepos = new MutableLiveData<>();
 
     @Inject
-    ListViewModel(RepoRepository repository) {
+    ListViewModel(RepoRepository repository, AppPreferences preferences) {
         this.repoRepository = repository;
+        this.preferences = preferences;
         mDisposable = new CompositeDisposable();
     }
 

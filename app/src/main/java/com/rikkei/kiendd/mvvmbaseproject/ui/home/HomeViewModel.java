@@ -1,4 +1,4 @@
-package com.rikkei.kiendd.mvvmbaseproject.viewmodel;
+package com.rikkei.kiendd.mvvmbaseproject.ui.home;
 
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseViewModel;
 import com.rikkei.kiendd.mvvmbaseproject.data.repository.RepoRepository;

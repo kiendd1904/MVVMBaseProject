@@ -1,4 +1,4 @@
-package com.rikkei.kiendd.mvvmbaseproject.view.home;
+package com.rikkei.kiendd.mvvmbaseproject.ui.home;
 
 import android.os.Bundle;
 
@@ -9,9 +9,7 @@ import com.rikkei.kiendd.mvvmbaseproject.base.ListResponse;
 import com.rikkei.kiendd.mvvmbaseproject.data.model.Repo;
 import com.rikkei.kiendd.mvvmbaseproject.databinding.FragmentHomeBinding;
 import com.rikkei.kiendd.mvvmbaseproject.utils.Define;
-import com.rikkei.kiendd.mvvmbaseproject.view.detail.DetailFragment;
-import com.rikkei.kiendd.mvvmbaseproject.viewmodel.HomeViewModel;
-import com.rikkei.kiendd.mvvmbaseproject.viewmodel.ListViewModel;
+import com.rikkei.kiendd.mvvmbaseproject.ui.detail.DetailFragment;
 
 import java.util.HashMap;
 

@@ -1,6 +1,6 @@
 package com.rikkei.kiendd.mvvmbaseproject.di.module;
 
-import com.rikkei.kiendd.mvvmbaseproject.view.main.MainActivity;
+import com.rikkei.kiendd.mvvmbaseproject.ui.main.MainActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

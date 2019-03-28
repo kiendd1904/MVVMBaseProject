@@ -52,4 +52,10 @@ public class Define {
         public static final String REPO_OWNER = "repo_owner";
         public static final String REPO_NAME = "repo_name";
     }
+
+    public static class PreferenceKey {
+        public static final String IS_FIRST_LAUNCH = "isHaveMasterData";
+        public static final String USER_INFO = "userInfo";
+        public static final String MASTER_DATA = "masterData";
+    }
 }
