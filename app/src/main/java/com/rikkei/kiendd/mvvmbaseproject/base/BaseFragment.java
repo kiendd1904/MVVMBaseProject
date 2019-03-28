@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.rikkei.kiendd.mvvmbaseproject.view.ViewController;
+import com.rikkei.kiendd.mvvmbaseproject.ui.ViewController;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,9 +1,12 @@
 package com.rikkei.kiendd.mvvmbaseproject.di.module;
 
 import com.rikkei.kiendd.mvvmbaseproject.di.ViewModelFactory;
-import com.rikkei.kiendd.mvvmbaseproject.viewmodel.DetailViewModel;
-import com.rikkei.kiendd.mvvmbaseproject.viewmodel.HomeViewModel;
-import com.rikkei.kiendd.mvvmbaseproject.viewmodel.ListViewModel;
+import com.rikkei.kiendd.mvvmbaseproject.ui.detail.DetailViewModel;
+import com.rikkei.kiendd.mvvmbaseproject.ui.home.HomeViewModel;
+import com.rikkei.kiendd.mvvmbaseproject.ui.home.ListViewModel;
+import com.rikkei.kiendd.mvvmbaseproject.ui.login.LoginViewModel;
+import com.rikkei.kiendd.mvvmbaseproject.ui.main.MainViewModel;
+import com.rikkei.kiendd.mvvmbaseproject.ui.splash.SplashViewModel;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -28,6 +31,21 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ListViewModel.class)
     abstract ViewModel bindListViewModel(ListViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainViewModel.class)
+    abstract ViewModel bindMainViewModel(MainViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SplashViewModel.class)
+    abstract ViewModel bindSplashViewModel(SplashViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel.class)
+    abstract ViewModel bindLoginViewModel(LoginViewModel viewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);

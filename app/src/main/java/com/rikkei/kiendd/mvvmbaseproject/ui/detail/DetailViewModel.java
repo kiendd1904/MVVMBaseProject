@@ -1,4 +1,4 @@
-package com.rikkei.kiendd.mvvmbaseproject.viewmodel;
+package com.rikkei.kiendd.mvvmbaseproject.ui.detail;
 
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseViewModel;
 import com.rikkei.kiendd.mvvmbaseproject.base.ObjectResponse;
