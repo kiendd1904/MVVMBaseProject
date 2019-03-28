@@ -1,8 +1,11 @@
 package com.rikkei.kiendd.mvvmbaseproject.base;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.rikkei.kiendd.mvvmbaseproject.ui.ViewController;
+import com.rikkei.kiendd.mvvmbaseproject.utils.Define;
+import com.rikkei.kiendd.mvvmbaseproject.utils.rx.RxBus;
 
 import javax.inject.Inject;
 
@@ -15,6 +18,7 @@ import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
+import io.reactivex.functions.Consumer;
 
 public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatActivity implements HasSupportFragmentInjector {
 
@@ -39,6 +43,13 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatA
         mViewController = new ViewController(getSupportFragmentManager(), getFragmentContainerId());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        RxBus.getInstance().subscribe(expiredToken);
+    }
+
     public abstract int getLayoutId();
 
     public abstract int getFragmentContainerId();
@@ -53,4 +64,13 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatA
             super.onBackPressed();
         }
     }
+
+    private Consumer<String> expiredToken = value -> {
+        if (value.equals(Define.Bus.ACCESS_TOKEN_EXPIRED)) {
+            Log.d("TOKEN_EXPIRED", BaseActivity.this.getClass().getName());
+            runOnUiThread(() -> {
+                //showDialogAccessTokenExpired();
+            });
+        }
+    };
 }
