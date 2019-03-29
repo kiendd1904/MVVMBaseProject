@@ -6,8 +6,37 @@ public class Define {
     public static final String REALM_NAME = "oab_database";
 
     public static final long DEFAULT_TIMEOUT = 60L;
+    public static final long CLICK_TIME_INTERVAL = 300L;
 
     public static class Api {
+
+        public static final String CONTENT_TYPE = "Content-Type: application/json";
+        public static final String LOGIN_URL = "app_api/v1/auth/user";
+
+
+        public static class BaseResponse {
+            public static final String SUCCESS = "success";
+            public static final String DATA = "data";
+            public static final String PAGE = "page";
+            public static final String ERROR = "error";
+            public static final String ERROR_CODE = "error_code";
+            public static final String ERROR_MESSAGE = "error_message";
+        }
+
+        public static class Error {
+            // Declare variable name by function description
+            public static final String NO_NETWORK_CONNECTION = "NO_NETWORK_CONNECTION";
+            public static final String TIME_OUT = "TIME_OUT";
+            public static final String UNKNOWN = "UNKNOWN";
+        }
+
+        public static class Key {
+            public static final String AUTHORIZATION = "Authorization";
+            public static final String LOGIN_NAME = "login_name";
+            public static final String PASSWORD = "password";
+            public static final String TOKEN = "token";
+        }
+
         public static class Http {
             public static final int RESPONSE_CODE_ACCESS_TOKEN_EXPIRED = 403;
         }

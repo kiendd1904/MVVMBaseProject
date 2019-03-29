@@ -30,6 +30,25 @@ android {
         }
     }
 
+    flavorDimensions "version"
+    productFlavors {
+
+        def URL_END_POINT = "BASE_URL";
+        def KEY = "API_KEY"
+
+        development {
+            dimension "version"
+            buildConfigField("String", URL_END_POINT, "\"https://api.github.com/\"")
+            buildConfigField("String", KEY, "\"ABCXYZ123TEST\"")
+        }
+
+        production {
+            dimension "version"
+            buildConfigField("String", URL_END_POINT, "\"https://api.github.com/\"")
+            buildConfigField("String", KEY, "\"ABCXYZ123TEST\"")
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

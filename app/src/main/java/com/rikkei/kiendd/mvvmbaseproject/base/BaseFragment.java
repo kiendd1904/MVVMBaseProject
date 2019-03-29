@@ -95,6 +95,20 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
         setArguments(bundle);
     }
 
+    protected void handleNetworkError(Throwable throwable, boolean isShowDialog) {
+        if (getActivity() != null && getActivity() instanceof BaseActivity) {
+            ((BaseActivity) getActivity()).handleNetworkError(throwable, isShowDialog);
+        }
+    }
+
+    protected boolean avoidDuplicateClick() {
+        if (getActivity() != null && getActivity() instanceof BaseActivity) {
+            return ((BaseActivity) getActivity()).avoidDuplicateClick();
+        }
+
+        return false;
+    }
+
     public abstract void backFromAddFragment();
 
     public abstract boolean backPressed();

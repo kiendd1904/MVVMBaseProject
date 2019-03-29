@@ -1,4 +1,4 @@
-package com.rikkei.kiendd.mvvmbaseproject.utils.rx;
+package com.rikkei.kiendd.mvvmbaseproject.utils;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
