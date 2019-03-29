@@ -27,21 +27,14 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Objects;
 
-import javax.inject.Inject;
-
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import androidx.fragment.app.Fragment;
-import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
+import dagger.android.support.DaggerAppCompatActivity;
 import io.reactivex.functions.Consumer;
 import retrofit2.HttpException;
 
-public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatActivity implements HasSupportFragmentInjector {
+public abstract class BaseActivity<T extends ViewDataBinding> extends DaggerAppCompatActivity {
 
     protected T binding;
 
@@ -53,17 +46,8 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatA
     private boolean touchWasInsideFocusedView, hasMove;
     private float rawX, rawY;
 
-    @Inject
-    DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
-
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return fragmentDispatchingAndroidInjector;
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, getLayoutId());
