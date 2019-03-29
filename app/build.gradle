@@ -11,22 +11,49 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        debug {
+
+        }
+        release {
+            storeFile file("../keystore/aic_keystore")
+            storePassword "your_password"
+            keyAlias "your_alias"
+            keyPassword "your_password"
+        }
+    }
+
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
         stage {
             signingConfig signingConfigs.debug
-            buildConfigField("String", "BASE_URL", "\"https://astellas-oab-stage.welby.jp/\"")
+            buildConfigField("String", "BASE_URL", "")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"https://welby.jp\"")
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+        }
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        rikkei {
+            dimension "version"
+            applicationId "com.rikkei.kiendd.mvvmbaseproject"
+        }
+        client {
+            dimension "version"
+            applicationId "client.appid.here"
         }
     }
 
