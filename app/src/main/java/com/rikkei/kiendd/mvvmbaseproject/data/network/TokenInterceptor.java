@@ -1,7 +1,7 @@
 package com.rikkei.kiendd.mvvmbaseproject.data.network;
 
 import com.rikkei.kiendd.mvvmbaseproject.utils.Define;
-import com.rikkei.kiendd.mvvmbaseproject.utils.rx.RxBus;
+import com.rikkei.kiendd.mvvmbaseproject.utils.RxBus;
 
 import java.io.IOException;
 

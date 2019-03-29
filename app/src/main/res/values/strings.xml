@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">MVVMBaseProject</string>
 
+    <!-- SplashFragment -->
+    <string name="txt_splash">SplashFragment</string>
+
     <!-- HomeFragment -->
     <string name="txt_home">HomeFragment</string>
     <string name="txt_repo_name">RepoName</string>
+
+    <!-- ErrorMessage -->
+    <string name="message_login_failed">Login Failed!</string>
 </resources>

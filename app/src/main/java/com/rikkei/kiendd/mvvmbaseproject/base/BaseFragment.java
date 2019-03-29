@@ -1,6 +1,5 @@
 package com.rikkei.kiendd.mvvmbaseproject.base;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -19,11 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import dagger.android.support.AndroidSupportInjection;
+import dagger.android.support.DaggerFragment;
 
-public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
+public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFragment {
 
     @Inject
     protected ViewModelProvider.Factory viewModelFactory;
@@ -35,12 +33,6 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
      */
     @Nullable
     protected ViewController mViewController;
-
-    @Override
-    public void onAttach(Context context) {
-        AndroidSupportInjection.inject(this);
-        super.onAttach(context);
-    }
 
     @Nullable
     @Override
@@ -93,6 +85,20 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
             }
         }
         setArguments(bundle);
+    }
+
+    protected void handleNetworkError(Throwable throwable, boolean isShowDialog) {
+        if (getActivity() != null && getActivity() instanceof BaseActivity) {
+            ((BaseActivity) getActivity()).handleNetworkError(throwable, isShowDialog);
+        }
+    }
+
+    protected boolean avoidDuplicateClick() {
+        if (getActivity() != null && getActivity() instanceof BaseActivity) {
+            return ((BaseActivity) getActivity()).avoidDuplicateClick();
+        }
+
+        return false;
     }
 
     public abstract void backFromAddFragment();

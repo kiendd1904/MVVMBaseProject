@@ -10,6 +10,7 @@ import com.rikkei.kiendd.mvvmbaseproject.data.model.Repo;
 import com.rikkei.kiendd.mvvmbaseproject.databinding.FragmentHomeBinding;
 import com.rikkei.kiendd.mvvmbaseproject.utils.Define;
 import com.rikkei.kiendd.mvvmbaseproject.ui.detail.DetailFragment;
+import com.rikkei.kiendd.mvvmbaseproject.utils.DialogUtil;
 
 import java.util.HashMap;
 
@@ -19,7 +20,6 @@ import androidx.lifecycle.ViewModelProviders;
 public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
 
     private HomeViewModel homeViewModel;
-    private ListViewModel listViewModel;
     private ListRepoAdapter adapter;
 
     @Override
@@ -32,7 +32,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
         super.onCreate(savedInstanceState);
 
         homeViewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel.class);
-        listViewModel = ViewModelProviders.of(this, viewModelFactory).get(ListViewModel.class);
     }
 
     @Override
@@ -61,21 +60,22 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     }
 
     private void fetchRepos() {
-        listViewModel.fetchRepos();
-        listViewModel.getLoadRepos().observe(this, this::fetchReposHandle);
+        homeViewModel.fetchRepos();
+        homeViewModel.getLoadRepos().observe(getViewLifecycleOwner(), this::fetchReposHandle);
     }
 
     private void fetchReposHandle(ListResponse<Repo> repoListResponse) {
         switch (repoListResponse.getStatus()) {
             case Define.ResponseStatus.LOADING:
-                //TODO: Show Loading
+                DialogUtil.getInstance(getContext()).show();
                 break;
             case Define.ResponseStatus.SUCCESS:
                 adapter.setData(repoListResponse.getData());
                 binding.rvRepos.setAdapter(adapter);
+                DialogUtil.getInstance(getContext()).hidden();
                 break;
             case Define.ResponseStatus.ERROR:
-                //TODO: Hide Loading, show Error
+                DialogUtil.getInstance(getContext()).hidden();
         }
     }
 

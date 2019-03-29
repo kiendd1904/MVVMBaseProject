@@ -4,6 +4,7 @@ import com.rikkei.kiendd.mvvmbaseproject.R;
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseActivity;
 import com.rikkei.kiendd.mvvmbaseproject.databinding.ActivityMainBinding;
 import com.rikkei.kiendd.mvvmbaseproject.ui.home.HomeFragment;
+import com.rikkei.kiendd.mvvmbaseproject.ui.splash.SplashFragment;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
@@ -18,19 +19,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
-        initView();
-        initData();
+    public void initView() {
+        mViewController.addFragment(SplashFragment.class, null);
     }
 
-    private void initView() {
-        if (mViewController != null) {
-            mViewController.addFragment(HomeFragment.class, null);
-        }
-    }
+    @Override
+    public void initData() {
 
-    private void initData() {
     }
 }

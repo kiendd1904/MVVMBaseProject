@@ -25,14 +25,14 @@ android {
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.debug
+            //signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
         stage {
-            signingConfig signingConfigs.debug
+            //signingConfig signingConfigs.debug
             buildConfigField("String", "BASE_URL", "")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
