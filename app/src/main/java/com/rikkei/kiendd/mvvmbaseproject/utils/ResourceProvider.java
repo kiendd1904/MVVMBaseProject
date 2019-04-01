@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import androidx.annotation.StringRes;
 
-public class ResourceProvider {
+public class ResourceProvider implements IResourceProvider {
 
     private Context context;
 
@@ -15,7 +15,8 @@ public class ResourceProvider {
         this.context = context;
     }
 
-    public String getString(@StringRes int id) {
+    @Override
+    public String getString(@StringRes final int id) {
         return context.getString(id);
     }
 }
