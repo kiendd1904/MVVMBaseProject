@@ -2,24 +2,27 @@ package com.rikkei.kiendd.mvvmbaseproject.ui.home;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+
 import com.rikkei.kiendd.mvvmbaseproject.R;
 import com.rikkei.kiendd.mvvmbaseproject.adapter.repolist.ListRepoAdapter;
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseFragment;
 import com.rikkei.kiendd.mvvmbaseproject.base.ListResponse;
 import com.rikkei.kiendd.mvvmbaseproject.data.model.Repo;
 import com.rikkei.kiendd.mvvmbaseproject.databinding.FragmentHomeBinding;
-import com.rikkei.kiendd.mvvmbaseproject.utils.Define;
 import com.rikkei.kiendd.mvvmbaseproject.ui.detail.DetailFragment;
+import com.rikkei.kiendd.mvvmbaseproject.utils.Define;
 import com.rikkei.kiendd.mvvmbaseproject.utils.DialogUtil;
 
 import java.util.HashMap;
 
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
+import javax.inject.Inject;
 
 public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
 
-    private HomeViewModel homeViewModel;
+    @Inject
+    HomeViewModel homeViewModel;
+
     private ListRepoAdapter adapter;
 
     @Override
@@ -31,7 +34,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        homeViewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel.class);
+        //homeViewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel.class);
     }
 
     @Override

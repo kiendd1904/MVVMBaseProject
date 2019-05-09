@@ -30,6 +30,8 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
 
     @Override
     public void initData() {
-        new Handler().postDelayed(() -> mViewController.replaceFragment(LoginFragment.class, null), 1000);
+        if (mViewController != null) {
+            new Handler().postDelayed(() -> mViewController.replaceFragment(LoginFragment.class, null), 1000);
+        }
     }
 }

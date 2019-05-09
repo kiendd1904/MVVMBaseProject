@@ -1,5 +1,11 @@
 package com.rikkei.kiendd.mvvmbaseproject.utils;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+import androidx.annotation.IntDef;
+import androidx.annotation.StringDef;
+
 public class Define {
 
     public static final String PREF_FILE_NAME = "oab_pref";
@@ -86,5 +92,10 @@ public class Define {
         public static final String IS_FIRST_LAUNCH = "isHaveMasterData";
         public static final String USER_INFO = "userInfo";
         public static final String MASTER_DATA = "masterData";
+    }
+
+    public static class ViewState {
+        public static final int GO_DETAIL = 0;
+        public static final int GO_HOME = 1;
     }
 }
