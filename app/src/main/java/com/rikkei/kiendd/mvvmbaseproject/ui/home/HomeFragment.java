@@ -1,29 +1,19 @@
 package com.rikkei.kiendd.mvvmbaseproject.ui.home;
 
-import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-
 import com.rikkei.kiendd.mvvmbaseproject.R;
-import com.rikkei.kiendd.mvvmbaseproject.adapter.repolist.ListRepoAdapter;
+import com.rikkei.kiendd.mvvmbaseproject.adapter.CommonListAdapter;
+import com.rikkei.kiendd.mvvmbaseproject.base.BaseAdapter;
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseFragment;
 import com.rikkei.kiendd.mvvmbaseproject.base.ListResponse;
 import com.rikkei.kiendd.mvvmbaseproject.data.model.Repo;
 import com.rikkei.kiendd.mvvmbaseproject.databinding.FragmentHomeBinding;
 import com.rikkei.kiendd.mvvmbaseproject.ui.detail.DetailFragment;
+import com.rikkei.kiendd.mvvmbaseproject.utils.ActivityUtils;
 import com.rikkei.kiendd.mvvmbaseproject.utils.Define;
-import com.rikkei.kiendd.mvvmbaseproject.utils.DialogUtil;
 
-import java.util.HashMap;
+public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewModel> implements BaseAdapter.OnItemClickListener<Repo> {
 
-import javax.inject.Inject;
-
-public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
-
-    @Inject
-    HomeViewModel homeViewModel;
-
-    private ListRepoAdapter adapter;
+    private CommonListAdapter<Repo> adapter;
 
     @Override
     protected int getLayoutId() {
@@ -31,17 +21,8 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //homeViewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel.class);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        fetchRepos();
+    protected Class<HomeViewModel> getViewModelClass() {
+        return HomeViewModel.class;
     }
 
     @Override
@@ -50,45 +31,39 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     }
 
     @Override
-    public void initData() {
-        adapter = new ListRepoAdapter(repo -> {
-            if (mViewController != null) {
-                HashMap<String, Object> data = new HashMap<>();
-                data.put(Define.Intent.REPO_OWNER, repo.getFullName());
-                data.put(Define.Intent.REPO_NAME, repo.getName());
+    public void initObserver() {
 
-                mViewController.addFragment(DetailFragment.class, data);
-            }
-        });
+    }
+
+    @Override
+    public void initData() {
+        fetchRepos();
     }
 
     private void fetchRepos() {
-        homeViewModel.fetchRepos();
-        homeViewModel.getLoadRepos().observe(getViewLifecycleOwner(), this::fetchReposHandle);
+        viewModel.fetchRepos();
+        viewModel.getLoadRepos().observe(getViewLifecycleOwner(), this::fetchReposHandle);
     }
 
     private void fetchReposHandle(ListResponse<Repo> repoListResponse) {
         switch (repoListResponse.getStatus()) {
             case Define.ResponseStatus.LOADING:
-                DialogUtil.getInstance(getContext()).show();
+                showLoading();
                 break;
             case Define.ResponseStatus.SUCCESS:
-                adapter.setData(repoListResponse.getData());
+                adapter = new CommonListAdapter<>(getContext(), repoListResponse.getData(), Define.ItemListType.REPO);
                 binding.rvRepos.setAdapter(adapter);
-                DialogUtil.getInstance(getContext()).hidden();
+                hideLoading();
                 break;
             case Define.ResponseStatus.ERROR:
-                DialogUtil.getInstance(getContext()).hidden();
+                hideLoading();
         }
     }
 
     @Override
-    public void backFromAddFragment() {
-
-    }
-
-    @Override
-    public boolean backPressed() {
-        return false;
+    public void onClickItem(int position, Repo item) {
+        if (getFragmentManager() != null) {
+            ActivityUtils.pushFragment(getFragmentManager(), DetailFragment.newInstance(item));
+        }
     }
 }

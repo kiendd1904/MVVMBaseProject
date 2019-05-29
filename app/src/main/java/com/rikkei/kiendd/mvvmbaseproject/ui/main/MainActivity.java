@@ -3,14 +3,19 @@ package com.rikkei.kiendd.mvvmbaseproject.ui.main;
 import com.rikkei.kiendd.mvvmbaseproject.R;
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseActivity;
 import com.rikkei.kiendd.mvvmbaseproject.databinding.ActivityMainBinding;
-import com.rikkei.kiendd.mvvmbaseproject.ui.home.HomeFragment;
 import com.rikkei.kiendd.mvvmbaseproject.ui.splash.SplashFragment;
+import com.rikkei.kiendd.mvvmbaseproject.utils.ActivityUtils;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding> {
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
 
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected Class<MainViewModel> getViewModelClass() {
+        return MainViewModel.class;
     }
 
     @Override
@@ -19,12 +24,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     }
 
     @Override
-    public void initView() {
-        mViewController.addFragment(SplashFragment.class, null);
+    protected void onStart() {
+        super.onStart();
+
+        initView();
     }
 
-    @Override
-    public void initData() {
-
+    public void initView() {
+        ActivityUtils.pushFragment(getSupportFragmentManager(), new SplashFragment());
     }
 }

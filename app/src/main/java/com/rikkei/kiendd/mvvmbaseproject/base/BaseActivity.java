@@ -10,6 +10,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -18,7 +25,9 @@ import com.rikkei.kiendd.mvvmbaseproject.data.network.NetworkCheckerInterceptor;
 import com.rikkei.kiendd.mvvmbaseproject.data.network.model.ApiObjectResponse;
 import com.rikkei.kiendd.mvvmbaseproject.data.network.model.RequestError;
 import com.rikkei.kiendd.mvvmbaseproject.ui.ViewController;
+import com.rikkei.kiendd.mvvmbaseproject.utils.ActivityUtils;
 import com.rikkei.kiendd.mvvmbaseproject.utils.Define;
+import com.rikkei.kiendd.mvvmbaseproject.utils.DeviceUtil;
 import com.rikkei.kiendd.mvvmbaseproject.utils.RxBus;
 
 import java.io.IOException;
@@ -27,16 +36,20 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Objects;
 
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
+import javax.inject.Inject;
+
 import dagger.android.support.DaggerAppCompatActivity;
 import io.reactivex.functions.Consumer;
 import retrofit2.HttpException;
 
-public abstract class BaseActivity<T extends ViewDataBinding> extends DaggerAppCompatActivity {
+public abstract class BaseActivity<T extends ViewDataBinding, V extends ViewModel> extends DaggerAppCompatActivity {
+
+    @Inject
+    protected ViewModelProvider.Factory viewModelFactory;
 
     protected T binding;
+
+    protected V viewModel;
 
     protected ViewController mViewController;
 
@@ -52,9 +65,7 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends DaggerAppC
 
         binding = DataBindingUtil.setContentView(this, getLayoutId());
         mViewController = new ViewController(getSupportFragmentManager(), getFragmentContainerId());
-
-        initView();
-        initData();
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass());
     }
 
     @Override
@@ -66,15 +77,21 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends DaggerAppC
 
     public abstract int getLayoutId();
 
+    protected abstract Class<V> getViewModelClass();
+
     public abstract int getFragmentContainerId();
 
     @Override
     public void onBackPressed() {
-        if (mViewController != null && mViewController.getCurrentFragment() != null) {
-            if (mViewController.getCurrentFragment().backPressed()) {
-                super.onBackPressed();
-            }
+
+        if (DeviceUtil.keyboardIsShowing(this)) {
+            DeviceUtil.hideSoftKeyboard(this);
+        }
+
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            ActivityUtils.popFragment(getSupportFragmentManager());
         } else {
+            ActivityUtils.popAllFragment(getSupportFragmentManager());
             super.onBackPressed();
         }
     }
@@ -204,8 +221,4 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends DaggerAppC
         lastClickTime = now;
         return false;
     }
-
-    public abstract void initView();
-
-    public abstract void initData();
 }

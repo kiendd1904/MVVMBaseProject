@@ -98,4 +98,8 @@ public class Define {
         public static final int GO_DETAIL = 0;
         public static final int GO_HOME = 1;
     }
+
+    public static class ItemListType {
+        public static final int REPO = 1;
+    }
 }

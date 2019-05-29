@@ -46,6 +46,12 @@ public class DeviceUtil {
         return false;
     }
 
+    public static boolean keyboardIsShowing(Context context) {
+        InputMethodManager imm = (InputMethodManager) context
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        return imm.isAcceptingText();
+    }
+
     public static void hideSoftKeyboard(Activity activity) {
         if (activity != null && activity.getWindow() != null) {
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);

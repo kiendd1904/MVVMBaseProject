@@ -10,4 +10,6 @@
 
     <!-- ErrorMessage -->
     <string name="message_login_failed">Login Failed!</string>
+    <string name="btn_accept">Accept</string>
+    <string name="btn_cancel">Cancel</string>
 </resources>

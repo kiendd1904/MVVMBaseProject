@@ -6,21 +6,17 @@ import com.rikkei.kiendd.mvvmbaseproject.R;
 import com.rikkei.kiendd.mvvmbaseproject.base.BaseFragment;
 import com.rikkei.kiendd.mvvmbaseproject.databinding.FragmentLoginBinding;
 import com.rikkei.kiendd.mvvmbaseproject.ui.home.HomeFragment;
+import com.rikkei.kiendd.mvvmbaseproject.utils.ActivityUtils;
 
-public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
+public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewModel> {
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_login;
     }
 
     @Override
-    public void backFromAddFragment() {
-
-    }
-
-    @Override
-    public boolean backPressed() {
-        return false;
+    protected Class<LoginViewModel> getViewModelClass() {
+        return LoginViewModel.class;
     }
 
     @Override
@@ -29,7 +25,17 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
     }
 
     @Override
+    public void initObserver() {
+
+    }
+
+    @Override
     public void initData() {
-        new Handler().postDelayed(() -> mViewController.replaceFragment(HomeFragment.class, null), 0);
+        new Handler().postDelayed(() -> {
+            if (getFragmentManager() != null) {
+                ActivityUtils.popAllFragment(getFragmentManager());
+                ActivityUtils.pushFragment(getFragmentManager(), new HomeFragment());
+            }
+        }, 0);
     }
 }
