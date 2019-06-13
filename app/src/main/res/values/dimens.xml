@@ -12,4 +12,5 @@
 
     <!-- Margin -->
     <dimen name="margin_20">20dp</dimen>
+    <dimen name="_dp8">8dp</dimen>
 </resources>

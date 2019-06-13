@@ -52,6 +52,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
                 break;
             case Define.ResponseStatus.SUCCESS:
                 adapter = new CommonListAdapter<>(getContext(), repoListResponse.getData(), Define.ItemListType.REPO);
+                adapter.setOnItemClickListener(this);
                 binding.rvRepos.setAdapter(adapter);
                 hideLoading();
                 break;

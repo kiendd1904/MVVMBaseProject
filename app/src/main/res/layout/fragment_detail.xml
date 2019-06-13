@@ -4,13 +4,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/margin_20">
+        android:padding="@dimen/margin_20"
+        style="@style/LayoutCommon">
 
         <TextView
             android:id="@+id/tvFullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="dfafdas"
+            android:text="Empty!"
+            android:layout_centerInParent="true"
             android:textSize="@dimen/text_size_large"/>
 
         <TextView
@@ -20,7 +22,8 @@
             android:text="dfafdas"
             android:textSize="@dimen/text_size_medium"
             android:layout_below="@+id/tvFullName"
-            android:layout_marginTop="@dimen/margin_20"/>
+            android:layout_marginTop="@dimen/margin_20"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tvStar"
@@ -29,7 +32,8 @@
             android:text="dfafdas"
             android:textSize="@dimen/text_size_medium"
             android:layout_below="@+id/tvDescription"
-            android:layout_marginTop="@dimen/margin_20"/>
+            android:layout_marginTop="@dimen/margin_20"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 </layout>
